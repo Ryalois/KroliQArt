@@ -88,6 +88,6 @@ function display() {
   {
     add_img( names[i], i );
   }
-  for( let i=0;i<pageLength/4096;i++)
+  for( let i=0;i<pageLength/32768;i++)
     addImgBackground();
 }
