@@ -1,0 +1,190 @@
+
+:root {
+    --x: 0;
+    --y: 0;
+    --rotation: 0;
+    --page-length: 200vh;
+}
+
+body {
+    text-shadow: rgb(0, 0, 0) 3px 0px 0px, rgb(0, 0, 0) 2.83487px 0.981584px 0px, rgb(0, 0, 0) 2.35766px 1.85511px 0px, rgb(0, 0, 0) 1.62091px 2.52441px 0px, rgb(0, 0, 0) 0.705713px 2.91581px 0px, rgb(0, 0, 0) -0.287171px 2.98622px 0px, rgb(0, 0, 0) -1.24844px 2.72789px 0px, rgb(0, 0, 0) -2.07227px 2.16926px 0px, rgb(0, 0, 0) -2.66798px 1.37182px 0px, rgb(0, 0, 0) -2.96998px 0.42336px 0px, rgb(0, 0, 0) -2.94502px -0.571704px 0px, rgb(0, 0, 0) -2.59586px -1.50383px 0px, rgb(0, 0, 0) -1.96093px -2.27041px 0px, rgb(0, 0, 0) -1.11013px -2.78704px 0px, rgb(0, 0, 0) -0.137119px -2.99686px 0px, rgb(0, 0, 0) 0.850987px -2.87677px 0px, rgb(0, 0, 0) 1.74541px -2.43999px 0px, rgb(0, 0, 0) 2.44769px -1.73459px 0px, rgb(0, 0, 0) 2.88051px -0.838247px 0px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans';
+}
+
+#navbar { 
+    color: whitesmoke;
+    font-size: calc( 10px + 1vw );
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 0px;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    background-color:  rgb(103, 109, 115);
+    border-bottom-style: solid;
+    border-color: whitesmoke;
+    border-width: 5px ;
+    box-shadow: 8px 8px 16px rgb(28, 32, 36);
+    z-index: 100;
+}
+
+#body {
+    position: absolute;
+    top:0;
+    right:0;
+    left:0;
+    background-color: rgb(52, 59, 66) ; 
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: var(--page-length);
+}
+
+.background-image {
+    transform:
+        translate( calc( var(--x) - 50vw ) , var(--y) )
+        rotate( var(--rotation) );
+    position: absolute;
+    height: 400px;
+    width: auto;
+    overflow: hidden;
+}
+
+main {
+    position: absolute;
+    top:0;
+    right:0;
+    left:0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba( 0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+}
+
+#grid, #videos {
+    margin-top: calc( 30px + 5vw );
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 90%;
+}
+
+.image {
+    cursor: pointer;
+    transition: 0.5s;
+    margin: 10px;
+    height: 15vw;
+    min-height: 270px;
+    width: auto;
+    background-color:  rgba(83, 89, 95, 0.8);
+    box-shadow: 8px 8px 16px rgb(28, 32, 36);
+    border-style: solid;
+    border-color: whitesmoke;
+    border-width: 5px;
+    box-sizing: border-box;
+}
+
+.image:hover {
+    height: calc( 15vw + 20px );
+    min-height: 290px;
+    width: auto;
+    margin: 0px;
+    background-color:  rgba(93, 99, 105, 0.9);
+}
+
+.video {
+    margin: 10px;
+    height: 15vw;
+    min-height: 290px;
+    width: calc( 15vw * (1920/1080) );
+    min-width: calc( 290px * (1920/1080) );
+    box-shadow: 8px 8px 16px rgb(28, 32, 36);
+    border-style: solid;
+    border-color: whitesmoke;
+    border-width: 5px;
+    box-sizing: border-box;
+}
+
+#fullscreen {
+    position: fixed;
+    top:0;
+    right:0;
+    left:0;
+    height: 100vh;
+    background-color: rgba( 0, 0, 0, 0.7);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    z-index: 200;
+}
+
+#fullscreen-title {
+    font-size: calc( 25px + 1vmax );
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5em;
+}
+
+#fullscreen-image {
+
+    height:fit-content;
+    min-height: 40%;
+    max-height: 70%;
+    width: fit-content;
+    max-width: 70%;
+}
+
+#left-button {
+    transition: 0.2s;
+    cursor: pointer;
+    width: calc( 2vmax + 40px);
+    height: calc( 3vmax + 60px );
+    background-color: whitesmoke;
+    position: absolute;
+    transform: translateX(-40vw);
+    clip-path: polygon(100% 0%, 50% 50%, 100% 100%, 50% 100%, 0% 50%, 50% 0);
+}
+
+#left-button:hover {
+    transform: scale( 1.2,1.2 ) translateX(-34vw);
+}
+
+#right-button {
+    transition: 0.2s;
+    cursor: pointer;
+    width: calc( 2vmax + 40px);
+    height: calc( 3vmax + 60px );
+    background-color: whitesmoke;
+    position: absolute;
+    transform: translateX(40vw);
+    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0% 100%, 50% 50%, 0% 0%);
+}
+
+#right-button:hover {
+    transform: scale( 1.2,1.2 ) translateX(34vw);
+}
+
+#close-button {
+    cursor: pointer;
+    position: relative;
+    width: 1.1em;
+    height: 1.1em;
+    margin-left: 2em;
+    background-color: whitesmoke;
+    clip-path: polygon( 20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30% );
+}
+
+#close-button:hover {
+    transform: scale( 1.2,1.2 );
+}
