@@ -1,9 +1,5 @@
 
-const names = [ 'KokosQ GIF.gif', 'KokosQroll.gif', 'KróliQus GIF.gif', 'Seduces you.gif', 'KroliQ March.gif',
-  'Amogus-hm.png', 'KokosQ.png', 'KokosQ2.png', 'Kroliq Map.png', 'KróliQ Beach.jpg',
-  'KróliQ Deepfried.png', 'Króliqus.png', 'MelonQ.png', 'XD.png', 'KokosQ Island.png',
-  'carrot.png', 'egg.png', 'golden_carrot.png', 'rabbit.png', 'cooked_rabbit.png', 'totem_of_undying.png'
-];
+const names = []
 
 function add_img( name, id ) { 
 	var img = document.createElement('img');
@@ -79,7 +75,10 @@ function fullscreen( name, id ) {
   div.appendChild(antibutton);
 }
 
-function display() {
+async function display() {
+
+  const response = await fetch('./list.json')
+  names = await response.json();
 
   const pageLength = 300 + names.length/3 * 400;
   document.body.style.setProperty( '--page-length' , pageLength + 'px' )  
@@ -91,10 +90,4 @@ function display() {
   for( let i=0;i<pageLength/16;i++)
     addImgBackground();
 
-}
-
-async function getdata() {
-  const response = await fetch('./list.json')
-  const data = await response.json();
-  return data;
 }
