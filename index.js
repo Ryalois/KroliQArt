@@ -12,7 +12,7 @@ function add_img( names, name, id ) {
     img.className = 'image'; 
 
     img.addEventListener.onclick = "fullscreen(name)"
-    img.setAttribute( "onclick", "fullscreen( " + names + ", '"+name+"', "+id+")" )
+    img.setAttribute( "onclick", "fullscreen( [" + names + "], '"+name+"', " + id + ")" )
 
 	document.getElementById('grid').appendChild(img);
 }
@@ -69,19 +69,19 @@ function fullscreen( names, name, id ) {
   div.appendChild(img);
 
   var button = document.createElement("div");
-    button.setAttribute( "onclick", "nextimage("+ names + ", " + (id+1) + ")" );
+    button.setAttribute( "onclick", "nextimage( ["+ names + "], " + (id+1) + ")" );
     button.id = "right-button";
   div.appendChild(button);
 
   var antibutton = document.createElement("div");
-    antibutton.setAttribute( "onclick", "nextimage("+ names + ", " + (id-1) + ")" );
+    antibutton.setAttribute( "onclick", "nextimage( ["+ names + "], " + (id-1) + ")" );
     antibutton.id = "left-button"
   div.appendChild(antibutton);
 }
 
 async function display() {
 
-  const response = await fetch('./list.json')
+  const response = await fetch('/list.json')
   const names = await response.json();
 
   const pageLength = 300 + names.length/3 * 400;
