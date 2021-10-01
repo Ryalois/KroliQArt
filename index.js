@@ -90,4 +90,12 @@ function display() {
   }
   for( let i=0;i<pageLength/16;i++)
     addImgBackground();
+
+  getdata();
+}
+
+async function getdata() {
+  const response = await fetch('./list.json')
+  const name = await response.json();
+  console.log(name);
 }
