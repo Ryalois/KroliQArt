@@ -1,23 +1,23 @@
-/*
+
 const names = [ 'KokosQ GIF.gif', 'KokosQroll.gif', 'KróliQus GIF.gif', 'Seduces you.gif', 'KroliQ March.gif',
   'Amogus-hm.png', 'KokosQ.png', 'KokosQ2.png', 'Kroliq Map.png', 'KróliQ Beach.jpg',
   'KróliQ Deepfried.png', 'Króliqus.png', 'MelonQ.png', 'XD.png', 'KokosQ Island.png',
   'carrot.png', 'egg.png', 'golden_carrot.png', 'rabbit.png', 'cooked_rabbit.png', 'totem_of_undying.png'
-]; */
+];
 
-function add_img( names, name, id ) { 
+function add_img( name, id ) { 
 	var img = document.createElement('img');
 
     img.src = './Images/' + name;
     img.className = 'image'; 
 
     img.addEventListener.onclick = "fullscreen(name)"
-    img.setAttribute( "onclick", "fullscreen( [" + names + "], '"+name+"', " + id + ")" )
+    img.setAttribute( "onclick", "fullscreen( '"+name+"', "+id+")" )
 
 	document.getElementById('grid').appendChild(img);
 }
 
-function addImgBackground(names) {
+function addImgBackground() {
   var img = document.createElement('img');
 
     img.src = './Images/' + names[ Math.floor( Math.random() * names.length ) ];
@@ -30,7 +30,7 @@ function addImgBackground(names) {
   document.getElementById('body').appendChild(img);
 }
 
-function nextimage( names, id) {
+function nextimage(id) {
   document.getElementById("fullscreen").remove();
   if( id < 0  )
     id = names.length - 1;
@@ -43,7 +43,7 @@ function closefullscreen() {
   document.getElementById("fullscreen").remove();
 }
 
-function fullscreen( names, name, id ) {
+function fullscreen( name, id ) {
 
   var truename = name.substring(0,name.length-4);
 
@@ -69,28 +69,32 @@ function fullscreen( names, name, id ) {
   div.appendChild(img);
 
   var button = document.createElement("div");
-    button.setAttribute( "onclick", "nextimage( ["+ names + "], " + (id+1) + ")" );
+    button.setAttribute( "onclick", "nextimage("+(id+1)+")" );
     button.id = "right-button";
   div.appendChild(button);
 
   var antibutton = document.createElement("div");
-    antibutton.setAttribute( "onclick", "nextimage( ["+ names + "], " + (id-1) + ")" );
+    antibutton.setAttribute( "onclick", "nextimage("+(id-1)+")" );
     antibutton.id = "left-button"
   div.appendChild(antibutton);
 }
 
-async function display() {
-
-  const response = await fetch('/list.json')
-  const names = await response.json();
+function display() {
 
   const pageLength = 300 + names.length/3 * 400;
   document.body.style.setProperty( '--page-length' , pageLength + 'px' )  
 
   for( let i=0;i<names.length;i++)
   {
-    add_img( names, names[i], i );
+    add_img( names[i], i );
   }
   for( let i=0;i<pageLength/16;i++)
-    addImgBackground(names);
+    addImgBackground();
+
+}
+
+async function getdata() {
+  const response = await fetch('./list.json')
+  const data = await response.json();
+  return data;
 }
