@@ -1,5 +1,5 @@
 
-const names = []
+var names = []
 
 function add_img( name, id ) { 
 	var img = document.createElement('img');
