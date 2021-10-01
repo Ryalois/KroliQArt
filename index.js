@@ -79,9 +79,10 @@ function fullscreen( names, name, id ) {
   div.appendChild(antibutton);
 }
 
-function display() {
+async function display() {
 
-  const names = getdata();
+  const response = await fetch('./list.json')
+  const names = await response.json();
 
   const pageLength = 300 + names.length/3 * 400;
   document.body.style.setProperty( '--page-length' , pageLength + 'px' )  
@@ -92,10 +93,4 @@ function display() {
   }
   for( let i=0;i<pageLength/16;i++)
     addImgBackground(names);
-}
-
-async function getdata() {
-  const response = await fetch('./list.json')
-  const data = await response.json();
-  return data;
 }
