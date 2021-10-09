@@ -138,9 +138,9 @@ main {
 
 #fullscreen-image {
 
-    height: fit-content;
+    height: auto;
     max-height: 70%;
-    width: fit-content;
+    width: auto;
     max-width: 70%;
 }
 
