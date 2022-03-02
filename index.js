@@ -77,7 +77,7 @@ function fullscreen( name, id ) {
 
 async function display() {
 
-  const response = await fetch('./list.json')
+  const response = await fetch( 'https://ryalois.github.io/KroliQArt/list.json' );
   names = await response.json();
 
   const pageLength = 300 + names.length/3 * 400;
@@ -88,6 +88,9 @@ async function display() {
     add_img( names[i], i );
   }
   for( let i=0;i<pageLength/16;i++)
+  {
     addImgBackground();
+  }
 
+  setTimeout( () => { document.body.removeChild( document.getElementById('loading') ) }, 50 )
 }
